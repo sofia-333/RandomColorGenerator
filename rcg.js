@@ -59,8 +59,8 @@ function generate(e){
 )};
 
 
-var cBtn = document.querySelectorAll('#copy');
-cBtn.forEach(n=> n.addEventListener('click', function(e) { 
+var copyBtn = document.querySelectorAll('#copy');
+copyBtn.forEach(n=> n.addEventListener('click', function(e) { 
     copyColor(e, n);
 }));
 
