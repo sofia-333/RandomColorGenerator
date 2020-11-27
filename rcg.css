@@ -3,7 +3,9 @@ body{
 }
 #header{
     padding:20px;
-    /*background-color: rgba(248, 245, 229, 0.438);*/
+    align-items: center;
+    justify-content: center;
+    display: grid;
 }
 #btn{
     height: 40px;
@@ -11,6 +13,7 @@ body{
     /* background-image: url("https://cdn.tutsplus.com/active/uploads/legacy/tuts/008_colorPicker/Tutorial/8.jpg"); */
     color:rgb(80, 79, 79);
     border-radius: 50px;
+    margin: 5px;
 }
 .copy{
     width: 100%;
@@ -21,12 +24,11 @@ body{
 }
 .colorbox{
     width: 120px;
-    margin: 20px;
+    margin: 25%;
     padding: 20px;
     font-size: small;
 }
 #colorboxes{
-
     display: grid;
     grid-template-columns: repeat(5,1fr);
     grid-gap: 20px;
@@ -41,5 +43,11 @@ body{
     border-radius: 100px;
 }
 .fa-copy{
+  margin: 5px;
+}
+.fa-palette{
+  margin: 5px;
+}
+.fa-paint-brush{
   margin: 5px;
 }

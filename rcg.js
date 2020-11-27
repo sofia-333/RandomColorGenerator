@@ -96,7 +96,9 @@ var copyBtn = document.querySelectorAll('.colorbox button');
 copyBtn.forEach(n => n.addEventListener('click', function (e) {
   copyColor(e, n);
 }));
-
+function myFunction() {
+  alert("You copied text!");
+}
 function copyColor(e, n) {
   var hexToCopy = n.parentElement.getElementsByClassName('hex');
 
