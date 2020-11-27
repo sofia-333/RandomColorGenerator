@@ -9,9 +9,9 @@ btn.addEventListener('click', generate);
 function generate(e){
 
     cbx.forEach((cb)=>{
-        var r = Math.random()*255;
-        var g = Math.random()*255;
-        var b = Math.random()*255;
+        var r = Math.round(Math.random()*255);
+        var g = Math.round(Math.random()*255);
+        var b = Math.round(Math.random()*255);
         
         cb.style.backgroundColor = `rgb(${r},${g},${b})`;
     });
@@ -27,20 +27,53 @@ var hex = {
   14: 'E',
   15: 'F'
 }
-var cbx = document.querySelectorAll(".colorbox");
-var btn = document.getElementById("btn");
+let divOfcolorboxes = document.getElementById('colorboxes');
+let btn = document.getElementById("btn");
+
+let num = document.getElementById('numOfboxes');
+num.value = "";
 
 btn.addEventListener('click', generate);
 
 function generate(e) {
-  cbx.forEach((cb) => {
+  //clear divOfcolorboxes
+  // while(divOfcolorboxes.firstChild) {
+  //   divOfcolorboxes.remove(divOfcolorboxes.firstChild);
+  // }
+  divOfcolorboxes.innerHTML = "";
+  console.log(divOfcolorboxes.firstChild);
+  const numOfboxes = document.getElementById('numOfboxes').value;
 
-    var a1 = Math.round(Math.random() * 15);
-    var a2 = Math.round(Math.random() * 15);
-    var a3 = Math.round(Math.random() * 15);
-    var a4 = Math.round(Math.random() * 15);
-    var a5 = Math.round(Math.random() * 15);
-    var a6 = Math.round(Math.random() * 15);
+  for (let box = 0; box < numOfboxes; box++) {
+    let newBox = document.createElement("div");
+    newBox.classList.add("colorbox");
+    //create div for hex number in it
+    let hexnum = document.createElement("div");
+    hexnum.classList.add("hex");
+    //create copy button
+    let newBtn = document.createElement("button");
+    newBtn.classList.add("copy");
+    newBtn.innerText = 'Copy';
+
+    let newCopyIcon = document.createElement("i");
+    newCopyIcon.classList.add("fas");
+    newCopyIcon.classList.add("fa-copy");
+
+    newBtn.appendChild(newCopyIcon);
+    newBox.appendChild(hexnum);
+    newBox.appendChild(newBtn);
+    divOfcolorboxes.appendChild(newBox);
+
+  }
+  var cbx = document.querySelectorAll(".colorbox");
+
+  cbx.forEach((cb) => {
+    let a1 = Math.round(Math.random() * 15);
+    let a2 = Math.round(Math.random() * 15);
+    let a3 = Math.round(Math.random() * 15);
+    let a4 = Math.round(Math.random() * 15);
+    let a5 = Math.round(Math.random() * 15);
+    let a6 = Math.round(Math.random() * 15);
 
     if (a1 > 9) a1 = hex[a1];
     if (a2 > 9) a2 = hex[a2];
@@ -49,10 +82,9 @@ function generate(e) {
     if (a5 > 9) a5 = hex[a5];
     if (a6 > 9) a6 = hex[a6];
 
-    var hexnum = cb.getElementsByClassName('hex');
+    let hexnum = cb.getElementsByClassName('hex');
 
     hexnum[0].style.backgroundColor = `#${a1}${a2}${a3}${a4}${a5}${a6}`;
-
     //adding color hexnum to the colorbox div 
     hexnum[0].innerText = `#${a1}${a2}${a3}${a4}${a5}${a6}`;
   }
@@ -60,14 +92,13 @@ function generate(e) {
 };
 
 
-var copyBtn = document.querySelectorAll('.colorbox input');
+var copyBtn = document.querySelectorAll('.colorbox button');
 copyBtn.forEach(n => n.addEventListener('click', function (e) {
   copyColor(e, n);
 }));
 
 function copyColor(e, n) {
   var hexToCopy = n.parentElement.getElementsByClassName('hex');
-  //console.log(hexToCopy[0].innerText);
 
   //create a textarea and place the string we want to copy in it
   const textarea = document.createElement('textarea');
