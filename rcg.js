@@ -89,19 +89,19 @@ function generate(e) {
     hexnum[0].innerText = `#${a1}${a2}${a3}${a4}${a5}${a6}`;
   }
   )
+
+  console.log(document.querySelectorAll('.colorbox button.copy'));
+
+
+  var copyBtns = document.querySelectorAll('.colorbox button');
+
+  copyBtns.forEach(n => n.addEventListener('click', function (e) {
+    copyColor(e, n);
+  }));
 };
 
-
-var copyBtn = document.querySelectorAll('.colorbox button');
-copyBtn.forEach(n => n.addEventListener('click', function (e) {
-  copyColor(e, n);
-}));
-function myFunction() {
-  alert("You copied text!");
-}
 function copyColor(e, n) {
   var hexToCopy = n.parentElement.getElementsByClassName('hex');
-
   //create a textarea and place the string we want to copy in it
   const textarea = document.createElement('textarea');
   textarea.value = hexToCopy[0].innerText;
@@ -110,4 +110,6 @@ function copyColor(e, n) {
   textarea.select();
   document.execCommand('copy');
   document.body.removeChild(textarea);
+  alert('Copied');
+
 }
